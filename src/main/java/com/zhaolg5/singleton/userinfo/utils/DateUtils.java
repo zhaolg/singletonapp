@@ -470,12 +470,28 @@ public class DateUtils {
     }
 
     /**
+     * 得到当前时间 return java.util.Date
+     *
+     * @return Timestamp
+     */
+    public static Date getNowDate() {
+        long curTime = System.currentTimeMillis();
+        return new Date(curTime);
+    }
+
+    /**
      *  获取最大失效时间 默认为 2099-12-31 23:59:59
      * @return
      */
     public static Date get20991231(){
         return strToDate("2099-12-31 23:59:00");
     }
+
+    public static Date getYYYYMMDD(String dateStr){
+        return strToDate(dateStr);
+    }
+
+
 
 
     public static void main(String[] args) {
