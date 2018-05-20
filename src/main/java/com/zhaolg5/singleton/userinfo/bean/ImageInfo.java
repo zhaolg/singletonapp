@@ -34,6 +34,14 @@ public class ImageInfo {
     @Column(length = 14)
     private long sortId;
 
+    public long getSortId() {
+        return sortId;
+    }
+
+    public void setSortId(long sortId) {
+        this.sortId = sortId;
+    }
+
     /**
      * 图片的绝对路径
      */
@@ -50,7 +58,7 @@ public class ImageInfo {
      * 数据状态：U有效 E生效
      */
     @Column(nullable = true,length = 1)
-    private String state;
+    private String state = "U";
 
     /**
      * 创建时间

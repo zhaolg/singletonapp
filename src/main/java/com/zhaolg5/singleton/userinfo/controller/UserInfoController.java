@@ -1,10 +1,12 @@
 package com.zhaolg5.singleton.userinfo.controller;
 
+import com.zhaolg5.singleton.userinfo.bean.ResultMsg;
 import com.zhaolg5.singleton.userinfo.bean.User;
 import com.zhaolg5.singleton.userinfo.service.interfaces.IUserInfoSV;
 import com.zhaolg5.singleton.userinfo.utils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,9 +31,16 @@ public class UserInfoController {
         return BeanUtils.convertToJson(userList);
     }
 
-
-
-
+    @RequestMapping(value = {"/userLogin"} ,method = {RequestMethod.GET,RequestMethod.POST} , produces = "application/json;charset=utf-8")
+    public String userLogin(@Param(value = "code") String code,@Param(value = "userName") String userName)throws Exception{
+        if(!StringUtils.isEmpty(code)){
+            User user = userInfoSV.userLogin(code,userName);
+            return BeanUtils.convertToJson(user);
+        }else {
+            ResultMsg errorMsg = new ResultMsg("10001","openId为空");
+            return BeanUtils.convertToJson(errorMsg);
+        }
+    }
 
 
 }

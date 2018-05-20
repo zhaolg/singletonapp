@@ -43,6 +43,11 @@ public class UserInfoDAOImpl implements IUserInfoDAO {
     }
 
     @Override
+    public UserInfo findByOpenId(String openId) {
+        return userinfoRepository.findUserInfoByOpenId(openId);
+    }
+
+    @Override
     public void save(UserInfo userInfo) {
         Assert.notNull(userInfo);
         userinfoRepository.save(userInfo);

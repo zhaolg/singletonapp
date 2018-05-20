@@ -1,11 +1,12 @@
 package com.zhaolg5.singleton.userinfo.common;
 
-import com.zhaolg5.singleton.userinfo.bean.ImageInfo;
-import com.zhaolg5.singleton.userinfo.bean.User;
-import com.zhaolg5.singleton.userinfo.bean.UserInfo;
-import com.zhaolg5.singleton.userinfo.bean.UserTag;
+import com.zhaolg5.singleton.userinfo.bean.*;
+import com.zhaolg5.singleton.userinfo.utils.DateUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,23 +31,35 @@ public class UserBuilder {
 
 
     public  UserBuilder withUserInfo(UserInfo userInfo){
-        this.userInfo =  userInfo;
+        if(userInfo != null){
+            userInfo.setAge(DateUtils.getAgeByBirth(userInfo.getBirthday()));
+            this.userInfo =  userInfo;
+        }
         return this;
     }
 
     public  UserBuilder withUserTags(List<UserTag> userTags){
-        this.userTags =  userTags;
+        if(!ObjectUtils.isEmpty(userTags)){
+            this.userTags =  userTags;
+        }
         return this;
     }
 
     public  UserBuilder withImageInfos(List<ImageInfo> imageInfos){
-        this.imageInfos =  imageInfos;
+        if(!ObjectUtils.isEmpty(imageInfos)){
+            for (ImageInfo value : imageInfos ){
+                value.setImageUrl(Constant.IMAGE_GLOBALDATA + value.getImageUrl());
+            }
+            this.imageInfos =  imageInfos;
+        }
         return this;
     }
 
     public User build(){
        return new User(userInfo,userTags,imageInfos);
     }
+
+
 
 
 }

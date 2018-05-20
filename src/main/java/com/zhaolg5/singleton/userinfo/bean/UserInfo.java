@@ -20,6 +20,8 @@ public class UserInfo {
     @Column(length = 14)
     private long userId;
 
+    private String openId;
+
     /**
      * 用户名称
      */
@@ -36,6 +38,12 @@ public class UserInfo {
      * 出身日期
      */
     private Date birthday;
+
+    /**
+     * 年龄
+     */
+    @Transient
+    private int age;
 
     /**
      * 当前所在省份
@@ -234,4 +242,19 @@ public class UserInfo {
         this.edu = edu;
     }
 
+    public String getOpenId() {
+        return openId;
+    }
+
+    public void setOpenId(String openId) {
+        this.openId = openId;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 }

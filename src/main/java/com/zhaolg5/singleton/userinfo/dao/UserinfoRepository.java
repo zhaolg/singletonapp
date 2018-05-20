@@ -16,4 +16,7 @@ public interface UserinfoRepository extends JpaRepository<UserInfo, Long> {
     @Query("select p from UserInfo p where p.userId =:userId ")
      UserInfo findOneByUserId(@Param("userId") long userId);
 
+    @Query("select p from UserInfo p where p.openId =:openId ")
+    UserInfo findUserInfoByOpenId(@Param("openId") String openId);
+
 }

@@ -16,7 +16,7 @@ import java.util.List;
 public interface ImageInfoRepository extends JpaRepository<ImageInfo, Long> {
 
 
-    @Query("select p from ImageInfo p where p.userId =:userId ")
+    @Query("select p from ImageInfo p where p.userId =:userId order by p.createDate desc ")
     List<ImageInfo> findOneByUserId(@Param("userId") long userId);
 
 }

@@ -16,6 +16,8 @@ public interface IUserInfoDAO {
 
     public UserInfo findbyUserId(long userId);
 
+    public UserInfo findByOpenId(String openId);
+
     public void save(UserInfo userInfo);
 
     public void  saveImageInfoList(List<ImageInfo> imageInfos);

@@ -1,10 +1,8 @@
 package com.zhaolg5.singleton.userinfo.service.impl;
 
-import com.zhaolg5.singleton.userinfo.bean.ImageInfo;
-import com.zhaolg5.singleton.userinfo.bean.User;
-import com.zhaolg5.singleton.userinfo.bean.UserInfo;
-import com.zhaolg5.singleton.userinfo.bean.UserTag;
+import com.zhaolg5.singleton.userinfo.bean.*;
 import com.zhaolg5.singleton.userinfo.common.UserBuilder;
+import com.zhaolg5.singleton.userinfo.common.WXAppletUserInfo;
 import com.zhaolg5.singleton.userinfo.dao.interfaces.IUserInfoDAO;
 import com.zhaolg5.singleton.userinfo.service.interfaces.IUserInfoSV;
 import org.slf4j.Logger;
@@ -14,7 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
+import org.springframework.util.StringUtils;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,10 +37,21 @@ public class UserInfoSVImpl implements IUserInfoSV {
     @Autowired
     UserBuilder userBuilder;
 
+    @Autowired
+    WXAppletUserInfo wxAppletUserInfo;
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Override
     public UserInfo findbyUserId(long userId) {
         Assert.state(userId > 0,"userId is <=0 ");
         return userInfoDAO.findbyUserId(userId);
+    }
+
+    @Override
+    public UserInfo findByOpenId(String openId) {
+        return userInfoDAO.findByOpenId(openId);
     }
 
     @Override
@@ -88,6 +100,34 @@ public class UserInfoSVImpl implements IUserInfoSV {
         }
         return users;
     }
+
+    public User userLogin(String code,String userName)throws Exception{
+        String openid = wxAppletUserInfo.getUserInfo(code);
+        if(!StringUtils.isEmpty(openid)){
+            UserInfo userInfo = userInfoDAO.findByOpenId(openid);
+            List<ImageInfo> oneByUserId = null;
+            List<UserTag> usertagByUserId =null;
+
+            if(!ObjectUtils.isEmpty(userInfo)){
+                oneByUserId = userInfoDAO.findOneByUserId(userInfo.getUserId());
+                entityManager.clear();
+                usertagByUserId = userInfoDAO.findUsertagByUserId(userInfo.getUserId());
+            }else{
+                userInfo= new UserInfo();
+                userInfo.setUserName(userName);
+                userInfo.setOpenId(openid);
+                userInfo.setState(Constant.USER_STATE.USER_STATE_INIT);
+                userInfo.setRemark("用户初始化");
+                userInfoDAO.save(userInfo);
+
+            }
+            return  UserBuilder.newInstance().withUserInfo(userInfo).withUserTags(usertagByUserId).withImageInfos(oneByUserId).build();
+        }else {
+            return  null;
+        }
+    }
+
+
 
 
 }

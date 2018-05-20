@@ -48,6 +48,31 @@ public class Constant {
     }
 
 
+    public interface USER_STATE{
+
+        /**
+         * 有效
+         */
+        public static final String USER_STATE_VALID = "U";
+
+        /**
+         * 无效
+         */
+        public static final String USER_STATE_INVALID = "E";
+
+        /**
+         * 初始化完成 基本资料无录入
+         */
+        public static final String USER_STATE_INIT = "I";
+
+    }
+
+    /**
+     * 全局变量
+     */
+    public static final String IMAGE_GLOBALDATA = "https://www.zhaolg5.com/singleton/image";
+
+
 
 
 }

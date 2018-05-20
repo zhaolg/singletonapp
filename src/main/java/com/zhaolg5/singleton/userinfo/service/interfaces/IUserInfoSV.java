@@ -19,6 +19,8 @@ public interface IUserInfoSV {
 
     public UserInfo findbyUserId(long userId);
 
+    public UserInfo findByOpenId(String openId);
+
     public void  save(UserInfo userInfo);
 
     public void  saveImageInfoList(List<ImageInfo> imageInfos);
@@ -30,5 +32,7 @@ public interface IUserInfoSV {
     public void delete(UserInfo userInfo);
 
     public List<User> getUserList(long userId) throws Exception;
+
+    public User userLogin(String code,String userName)throws Exception;
 
 }
