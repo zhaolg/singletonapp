@@ -42,5 +42,16 @@ public class UserInfoController {
         }
     }
 
+    @RequestMapping(value = {"/refreshUserInfo"} ,method = {RequestMethod.GET,RequestMethod.POST} , produces = "application/json;charset=utf-8")
+    public String refreshUserInfo(@Param(value = "userId") String userId)throws Exception{
+        if(!StringUtils.isEmpty(userId)){
+            User user = userInfoSV.refreshUserInfo(Long.valueOf(userId));
+            return BeanUtils.convertToJson(user);
+        }else {
+            ResultMsg errorMsg = new ResultMsg("10001","userId为空");
+            return BeanUtils.convertToJson(errorMsg);
+        }
+    }
+
 
 }

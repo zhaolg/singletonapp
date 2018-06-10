@@ -13,10 +13,10 @@ import org.springframework.data.repository.query.Param;
  */
 public interface UserinfoRepository extends JpaRepository<UserInfo, Long> {
 
-    @Query("select p from UserInfo p where p.userId =:userId ")
+    @Query("select p from UserInfo p where p.userId =:userId and p.state = 'U' ")
      UserInfo findOneByUserId(@Param("userId") long userId);
 
-    @Query("select p from UserInfo p where p.openId =:openId ")
+    @Query("select p from UserInfo p where p.openId =:openId and p.state = 'U' ")
     UserInfo findUserInfoByOpenId(@Param("openId") String openId);
 
 }

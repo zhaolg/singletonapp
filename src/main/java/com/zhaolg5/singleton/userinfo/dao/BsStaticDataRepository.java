@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface BsStaticDataRepository extends JpaRepository<BsStaticData,String> {
 
-    @Query("select p from BsStaticData p where p.codeType =:codeType ")
+    @Query("select p from BsStaticData p where p.codeType =:codeType and p.state = 'U' ")
     List<BsStaticData> findAllByCodeType(@Param("codeType") String codeType);
 
 }

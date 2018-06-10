@@ -16,7 +16,7 @@ import java.util.List;
 public interface UsertagRepository extends JpaRepository<UserTag,String> {
 
 
-    @Query("select p from UserTag p where p.userId =:userId ")
+    @Query("select p from UserTag p where p.userId =:userId and p.state <> 'E' ")
     List<UserTag> findOneByUserId(@Param("userId") long userId);
 
 

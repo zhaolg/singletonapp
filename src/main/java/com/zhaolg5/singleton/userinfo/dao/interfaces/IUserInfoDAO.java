@@ -30,4 +30,6 @@ public interface IUserInfoDAO {
 
     public List<UserTag>  findUsertagByUserId(long userId)throws Exception;
 
+    public void deleteImage(long userId,long sortId)throws Exception;
+
 }

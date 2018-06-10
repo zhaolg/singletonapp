@@ -70,7 +70,7 @@ public class Constant {
     /**
      * 全局变量
      */
-    public static final String IMAGE_GLOBALDATA = "https://www.zhaolg5.com/singleton/image";
+    public static final String IMAGE_GLOBALDATA = "http://localhost:8081/singleton/";
 
 
 

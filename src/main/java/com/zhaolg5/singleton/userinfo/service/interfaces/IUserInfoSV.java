@@ -35,4 +35,8 @@ public interface IUserInfoSV {
 
     public User userLogin(String code,String userName)throws Exception;
 
+    public void deleteImage(long userId,long sortId)throws Exception;
+
+    public User refreshUserInfo(long userId)throws Exception;
+
 }

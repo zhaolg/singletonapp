@@ -86,4 +86,9 @@ public class UserInfoDAOImpl implements IUserInfoDAO {
     public List<UserTag> findUsertagByUserId(long userId) throws Exception {
         return usertagRepository.findOneByUserId(userId);
     }
+
+    @Override
+    public void deleteImage(long userId, long sortId) throws Exception {
+        imageInfoRepository.deleteImageInfosByUserIdAndSortId(userId,sortId);
+    }
 }

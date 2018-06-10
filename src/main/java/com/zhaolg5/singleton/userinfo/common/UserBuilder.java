@@ -48,7 +48,7 @@ public class UserBuilder {
     public  UserBuilder withImageInfos(List<ImageInfo> imageInfos){
         if(!ObjectUtils.isEmpty(imageInfos)){
             for (ImageInfo value : imageInfos ){
-                value.setImageUrl(Constant.IMAGE_GLOBALDATA + value.getImageUrl());
+                value.setImageUrl(value.getImageUrl());
             }
             this.imageInfos =  imageInfos;
         }

@@ -127,7 +127,22 @@ public class UserInfoSVImpl implements IUserInfoSV {
         }
     }
 
+    @Override
+    public void deleteImage(long userId,long sortId) throws Exception {
+        userInfoDAO.deleteImage(userId,sortId);
+    }
 
+    @Override
+    public User refreshUserInfo(long userId) throws Exception {
+        UserInfo userInfo = userInfoDAO.findbyUserId(userId);
+        List<ImageInfo> oneByUserId = null;
+        List<UserTag> usertagByUserId =null;
+        if(!ObjectUtils.isEmpty(userInfo)){
+            oneByUserId = userInfoDAO.findOneByUserId(userInfo.getUserId());
+            usertagByUserId = userInfoDAO.findUsertagByUserId(userInfo.getUserId());
+        }
+        return  UserBuilder.newInstance().withUserInfo(userInfo).withUserTags(usertagByUserId).withImageInfos(oneByUserId).build();
+    }
 
 
 }

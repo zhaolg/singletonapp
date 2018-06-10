@@ -1,9 +1,7 @@
 package com.zhaolg5.singleton.userinfo.controller;
 
-import com.zhaolg5.singleton.userinfo.bean.Constant;
 import com.zhaolg5.singleton.userinfo.bean.ImageInfo;
 import com.zhaolg5.singleton.userinfo.service.interfaces.IUserInfoSV;
-import com.zhaolg5.singleton.userinfo.utils.BeanUtils;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,9 +53,10 @@ public class ImageUploadContrinller {
                 imageInfo.setSortId(Long.valueOf(sortId));
                 list.add(imageInfo);
 
+                userInfoSV.deleteImage(Long.valueOf(userId),Long.valueOf(sortId));
                 userInfoSV.saveImageInfoList(list);
                 param.put("msgCode","1");
-                param.put("imageUrl",Constant.IMAGE_GLOBALDATA+imageInfo.getImageUrl());
+                param.put("imageUrl",imageInfo.getImageUrl());
                 param.put("imageId",sortId);
             } else {
                 param.put("msgCode","10003");
