@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -51,6 +52,15 @@ public class UserInfoController {
             ResultMsg errorMsg = new ResultMsg("10001","userId为空");
             return BeanUtils.convertToJson(errorMsg);
         }
+    }
+
+
+    @RequestMapping(value = {"/test"} ,method = {RequestMethod.GET,RequestMethod.POST} , produces = "application/json;charset=utf-8")
+    public String test(@Param(value = "aa")String ss,@Param(value = "bb")String bb)throws Exception{
+
+        System.out.println(ss);
+
+        return null;
     }
 
 
