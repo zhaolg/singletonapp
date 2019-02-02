@@ -17,9 +17,9 @@ public class IndexController {
         return "";
     }
 
-    @RequestMapping(value = "/")
-    @ResponseBody
-    public String index() {
-        return "success";
-    }
+//    @RequestMapping(value = "/")
+//    @ResponseBody
+//    public String index() {
+//        return "/static/index";
+//    }
 }
