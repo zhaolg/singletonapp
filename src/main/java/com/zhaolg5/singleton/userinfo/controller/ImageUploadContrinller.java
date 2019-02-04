@@ -41,7 +41,8 @@ public class ImageUploadContrinller {
                 int size = (int) file.getSize();
 
                 File dest = new File(path + openid +"/" + fileName);
-                if(!dest.getParentFile().exists()){ //判断文件父目录是否存在
+                //判断文件父目录是否存在
+                if(!dest.getParentFile().exists()){
                     dest.getParentFile().mkdir();
                 }
                 file.transferTo(dest);

@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class ErrorController {
 
-    @RequestMapping(value = {"/error"} , method = {RequestMethod.GET,RequestMethod.POST} )
-    public String error()throws Exception{
-       return "error/404.html";
+    @RequestMapping(value = {"/error"}, method = {RequestMethod.GET, RequestMethod.POST})
+    public String error() throws Exception {
+        return "error/404.html";
     }
 
 

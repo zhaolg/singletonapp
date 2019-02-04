@@ -10,8 +10,8 @@ import org.springframework.web.servlet.DispatcherServlet;
 /**
  * Created by zhaolg on 2018/5/19
  *
- * @return
- * @throws Exception
+ * @author zhaolg
+ * @date 2018/5/19
  */
 @Configuration
 public class RestTemplateConfig {

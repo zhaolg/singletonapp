@@ -26,37 +26,37 @@ public class UserInfoController {
     @Autowired
     IUserInfoSV userInfoSV;
 
-    @RequestMapping(value = {"/userlist"} ,method = {RequestMethod.GET,RequestMethod.POST} , produces = "application/json;charset=utf-8")
+    @RequestMapping(value = {"/userlist"}, method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json;charset=utf-8")
     public String getUserListAll(@Param(value = "userId") long userId) throws Exception {
         List<User> userList = userInfoSV.getUserList(userId);
         return BeanUtils.convertToJson(userList);
     }
 
-    @RequestMapping(value = {"/userLogin"} ,method = {RequestMethod.GET,RequestMethod.POST} , produces = "application/json;charset=utf-8")
-    public String userLogin(@Param(value = "code") String code,@Param(value = "userName") String userName)throws Exception{
-        if(!StringUtils.isEmpty(code)){
-            User user = userInfoSV.userLogin(code,userName);
+    @RequestMapping(value = {"/userLogin"}, method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json;charset=utf-8")
+    public String userLogin(@Param(value = "code") String code, @Param(value = "userName") String userName) throws Exception {
+        if (!StringUtils.isEmpty(code)) {
+            User user = userInfoSV.userLogin(code, userName);
             return BeanUtils.convertToJson(user);
-        }else {
-            ResultMsg errorMsg = new ResultMsg("10001","openId为空");
+        } else {
+            ResultMsg errorMsg = new ResultMsg("10001", "openId为空");
             return BeanUtils.convertToJson(errorMsg);
         }
     }
 
-    @RequestMapping(value = {"/refreshUserInfo"} ,method = {RequestMethod.GET,RequestMethod.POST} , produces = "application/json;charset=utf-8")
-    public String refreshUserInfo(@Param(value = "userId") String userId)throws Exception{
-        if(!StringUtils.isEmpty(userId)){
+    @RequestMapping(value = {"/refreshUserInfo"}, method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json;charset=utf-8")
+    public String refreshUserInfo(@Param(value = "userId") String userId) throws Exception {
+        if (!StringUtils.isEmpty(userId)) {
             User user = userInfoSV.refreshUserInfo(Long.valueOf(userId));
             return BeanUtils.convertToJson(user);
-        }else {
-            ResultMsg errorMsg = new ResultMsg("10001","userId为空");
+        } else {
+            ResultMsg errorMsg = new ResultMsg("10001", "userId为空");
             return BeanUtils.convertToJson(errorMsg);
         }
     }
 
 
-    @RequestMapping(value = {"/test"} ,method = {RequestMethod.GET,RequestMethod.POST} , produces = "application/json;charset=utf-8")
-    public String test(@Param(value = "aa")String ss,@Param(value = "bb")String bb)throws Exception{
+    @RequestMapping(value = {"/test"}, method = {RequestMethod.GET, RequestMethod.POST}, produces = "application/json;charset=utf-8")
+    public String test(@Param(value = "aa") String ss, @Param(value = "bb") String bb) throws Exception {
 
         System.out.println(ss);
 

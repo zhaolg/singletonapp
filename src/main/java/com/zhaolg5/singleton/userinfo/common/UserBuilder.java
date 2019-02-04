@@ -19,47 +19,45 @@ import java.util.List;
 @Service
 public class UserBuilder {
 
-    public UserInfo userInfo ;
+    public UserInfo userInfo;
 
     public List<UserTag> userTags = new ArrayList<>();
 
     public List<ImageInfo> imageInfos = new ArrayList<>();
 
-    public static UserBuilder newInstance(){
+    public static UserBuilder newInstance() {
         return new UserBuilder();
     }
 
 
-    public  UserBuilder withUserInfo(UserInfo userInfo){
-        if(userInfo != null){
+    public UserBuilder withUserInfo(UserInfo userInfo) {
+        if (userInfo != null) {
             userInfo.setAge(DateUtils.getAgeByBirth(userInfo.getBirthday()));
-            this.userInfo =  userInfo;
+            this.userInfo = userInfo;
         }
         return this;
     }
 
-    public  UserBuilder withUserTags(List<UserTag> userTags){
-        if(!ObjectUtils.isEmpty(userTags)){
-            this.userTags =  userTags;
+    public UserBuilder withUserTags(List<UserTag> userTags) {
+        if (!ObjectUtils.isEmpty(userTags)) {
+            this.userTags = userTags;
         }
         return this;
     }
 
-    public  UserBuilder withImageInfos(List<ImageInfo> imageInfos){
-        if(!ObjectUtils.isEmpty(imageInfos)){
-            for (ImageInfo value : imageInfos ){
+    public UserBuilder withImageInfos(List<ImageInfo> imageInfos) {
+        if (!ObjectUtils.isEmpty(imageInfos)) {
+            for (ImageInfo value : imageInfos) {
                 value.setImageUrl(value.getImageUrl());
             }
-            this.imageInfos =  imageInfos;
+            this.imageInfos = imageInfos;
         }
         return this;
     }
 
-    public User build(){
-       return new User(userInfo,userTags,imageInfos);
+    public User build() {
+        return new User(userInfo, userTags, imageInfos);
     }
-
-
 
 
 }

@@ -11,9 +11,9 @@ public class Constant {
     /**
      * 个人标签类型
      */
-    public  static final String TAG_TYPE = "TAG_TYPE";
+    public static final String TAG_TYPE = "TAG_TYPE";
 
-    public interface TagType{
+    public interface TagType {
 
         /**
          * 运动
@@ -48,7 +48,7 @@ public class Constant {
     }
 
 
-    public interface USER_STATE{
+    public interface USER_STATE {
 
         /**
          * 有效
@@ -71,8 +71,6 @@ public class Constant {
      * 全局变量
      */
     public static final String IMAGE_GLOBALDATA = "http://localhost:8081/singleton/";
-
-
 
 
 }

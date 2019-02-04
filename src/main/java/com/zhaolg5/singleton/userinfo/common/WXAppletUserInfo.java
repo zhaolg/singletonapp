@@ -29,8 +29,8 @@ public class WXAppletUserInfo {
     @Autowired
     WebChatConfig webChatConfig;
 
-    public String getUserInfo(String code)throws Exception{
-        String jsonStr = restTemplate.getForEntity(webChatConfig.getWebChaturl()+"?appid={0}&&secret={1}&js_code={2}&grant_type=authorization_code", String.class, webChatConfig.getAppId(), webChatConfig.getSecret(),code).getBody();
+    public String getUserInfo(String code) throws Exception {
+        String jsonStr = restTemplate.getForEntity(webChatConfig.getWebChaturl() + "?appid={0}&&secret={1}&js_code={2}&grant_type=authorization_code", String.class, webChatConfig.getAppId(), webChatConfig.getSecret(), code).getBody();
         Map<String, Object> stringObjectMap = BeanUtils.convertToMap(jsonStr);
         return (String) stringObjectMap.get("openid");
     }
