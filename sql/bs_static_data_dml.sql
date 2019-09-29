@@ -20,5 +20,3 @@ INSERT INTO app.bs_static_data (id ,code_type,code_value,code_name,code_desc,sor
 INSERT INTO app.bs_static_data (id ,code_type,code_value,code_name,code_desc,sort_id,state,create_date)VALUES (NULL ,"TAG_TYPE_SPORT","WQ","网球","",1,"U",now());
 INSERT INTO app.bs_static_data (id ,code_type,code_value,code_name,code_desc,sort_id,state,create_date)VALUES (NULL ,"TAG_TYPE_SPORT","GEF","高尔夫","",1,"U",now());
 INSERT INTO app.bs_static_data (id ,code_type,code_value,code_name,code_desc,sort_id,state,create_date)VALUES (NULL ,"TAG_TYPE_SPORT","TQ","台球","",1,"U",now());
-
-

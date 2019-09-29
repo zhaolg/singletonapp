@@ -3,6 +3,9 @@ package com.zhaolg5.singleton;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * @author xmly
+ */
 @SpringBootApplication
 public class SingletonApplication {
 
