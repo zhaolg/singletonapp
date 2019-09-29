@@ -1,5 +1,6 @@
 package com.zhaolg5.singleton.userinfo.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author : lingangzhao
  * @date : 2019/2/2 17:49
  */
-@RestController
+@Controller
 public class IndexController {
 
     @RequestMapping(value = "/health")
@@ -17,9 +18,8 @@ public class IndexController {
         return "";
     }
 
-//    @RequestMapping(value = "/")
-//    @ResponseBody
-//    public String index() {
-//        return "/static/index";
-//    }
+    @RequestMapping(value = "/")
+    public String index() {
+        return "error/404.html";
+    }
 }
