@@ -19,6 +19,6 @@ public class IndexController {
 
     @RequestMapping(value = "/")
     public String index() {
-        return "error/404.html";
+        return "index.html";
     }
 }
