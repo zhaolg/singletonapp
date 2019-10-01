@@ -1,11 +1,13 @@
 package com.zhaolg5.singleton.userinfo.job;
 
+import com.zhaolg5.singleton.userinfo.utils.DateUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
@@ -32,7 +34,8 @@ public class DailyNotifyJob {
             @Override
             public String call() throws Exception {
                 log.error("curr " + 1);
-                stringRedisTemplate.opsForValue().increment(KEY_JOB, 1);
+                stringRedisTemplate.opsForHash().increment(KEY_JOB, "executeCount", 1);
+                stringRedisTemplate.opsForHash().put(KEY_JOB, "executeTime", DateUtils.dateToStr(new Date()));
                 return "1";
             }
         });
