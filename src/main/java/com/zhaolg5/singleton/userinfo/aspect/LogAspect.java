@@ -13,13 +13,13 @@ import java.util.Arrays;
 
 /**
  * @author lingang.zhao
- * @date 2019/10/1 3:36 下午
  * @version 1.0
+ * @date 2019/10/1 4:01 下午
  */
 @Slf4j
 @Aspect
 @Component
-public class WebLogAspect {
+public class LogAspect {
 
     /**
      * 两个..代表所有子目录，最后括号里的两个..代表所有参数
