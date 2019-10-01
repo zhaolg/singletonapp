@@ -1,7 +1,6 @@
 package com.zhaolg5.singleton.userinfo.interceptor;
 
 import com.zhaolg5.singleton.userinfo.utils.DateUtils;
-import com.zhaolg5.singleton.userinfo.utils.IpAddressUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
