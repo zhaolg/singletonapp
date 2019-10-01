@@ -1,6 +1,7 @@
 package com.zhaolg5.singleton.userinfo.interceptor;
 
 import com.zhaolg5.singleton.userinfo.utils.DateUtils;
+import com.zhaolg5.singleton.userinfo.utils.IpAddressUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,6 @@ public class CommonInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String userIp = getUserIp(request);
-
         stringRedisTemplate.opsForHash().put(CLIENT_IP_LIST, userIp, DateUtils.dateToStr(new Date()));
         return true;
     }
