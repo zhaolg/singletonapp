@@ -25,7 +25,7 @@ public class DailyNotifyJob {
 
     private static final String KEY_JOB = "singleton.job";
 
-    @Scheduled(cron = "0/30 * *  * * ? ")
+    @Scheduled(cron = "0 0 1  * * ? ")
     public void execute() {
 
         FutureTask futureTask = new FutureTask(new Callable() {
