@@ -398,7 +398,7 @@ public class DateUtils {
     }
 
     public static String dateToStr(Date date) {
-        return (date == null) ? "" : new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(date);
+        return (date == null) ? "" : new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
     }
 
     /**
