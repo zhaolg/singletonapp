@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
+import java.util.concurrent.*;
 
 /**
  * @author lingang.zhao
@@ -27,11 +28,26 @@ public class CommonInterceptor implements HandlerInterceptor {
 
     private static final String CLIENT_IP_LIST = "client:ip:list";
 
+    private ExecutorService cachedThreadPool;
+
+    {
+        cachedThreadPool = new ThreadPoolExecutor(1, 1,
+                0L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
+
+    }
+
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        String userIp = getUserIp(request);
-        stringRedisTemplate.opsForHash().put(CLIENT_IP_LIST, userIp, DateUtils.dateToStr(new Date()));
+        FutureTask futureTask = new FutureTask(new Callable() {
+            @Override
+            public String call() {
+                String userIp = getUserIp(request);
+                stringRedisTemplate.opsForHash().put(CLIENT_IP_LIST, userIp, DateUtils.dateToStr(new Date()));
+                return "1";
+            }
+        });
+        cachedThreadPool.submit(futureTask);
         return true;
     }
 
