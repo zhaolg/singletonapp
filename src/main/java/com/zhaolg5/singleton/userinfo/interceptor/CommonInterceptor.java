@@ -39,19 +39,15 @@ public class CommonInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        cachedThreadPool.submit(getFutureTask(request));
+        cachedThreadPool.submit(new FutureTask(new Callable() {
+            @Override
+            public String call() {
+                String userIp = getUserIp(request);
+                stringRedisTemplate.opsForHash().put(CLIENT_IP_LIST, userIp, DateUtils.dateToStr(new Date()));
+                return "1";
+            }
+        }));
         return true;
-    }
-
-    private FutureTask getFutureTask(HttpServletRequest request) {
-        return new FutureTask(new Callable() {
-                @Override
-                public String call() {
-                    String userIp = getUserIp(request);
-                    stringRedisTemplate.opsForHash().put(CLIENT_IP_LIST, userIp, DateUtils.dateToStr(new Date()));
-                    return "1";
-                }
-            });
     }
 
     /**
