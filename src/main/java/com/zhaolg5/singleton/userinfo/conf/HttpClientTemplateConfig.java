@@ -23,7 +23,7 @@ public class HttpClientTemplateConfig {
     public ClientHttpRequestFactory simpleClientHttpRequestFactory() {
         SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
         factory.setConnectTimeout(15000);
-        factory.setReadTimeout(5000);
+        factory.setReadTimeout(50000);
         return factory;
     }
 }
